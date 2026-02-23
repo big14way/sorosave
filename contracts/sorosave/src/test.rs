@@ -1,8 +1,4 @@
-use soroban_sdk::{
-    testutils::Address as _,
-    token::StellarAssetClient,
-    Address, Env, String,
-};
+use soroban_sdk::{testutils::Address as _, token::StellarAssetClient, Address, Env, String};
 
 use crate::types::GroupStatus;
 use crate::{SoroSaveContract, SoroSaveContractClient};

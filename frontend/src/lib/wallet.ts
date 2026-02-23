@@ -2,8 +2,8 @@ import freighter from "@stellar/freighter-api";
 
 export async function isFreighterInstalled(): Promise<boolean> {
   try {
-    const result = await freighter.isConnected();
-    return result.isConnected;
+    const connected = await freighter.isConnected();
+    return connected;
   } catch {
     return false;
   }
