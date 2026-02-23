@@ -2,7 +2,7 @@ use soroban_sdk::{Address, Env, Map, Vec};
 
 use crate::errors::ContractError;
 use crate::storage;
-use crate::types::{GroupStatus, RoundInfo, SavingsGroup};
+use crate::types::{GroupStatus, RoundInfo};
 
 pub fn distribute_payout(env: &Env, group_id: u64) -> Result<(), ContractError> {
     let mut group = storage::get_group(env, group_id).ok_or(ContractError::GroupNotFound)?;

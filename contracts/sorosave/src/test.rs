@@ -1,8 +1,6 @@
-#![cfg(test)]
-
 use soroban_sdk::{
     testutils::Address as _,
-    token::{StellarAssetClient, TokenClient},
+    token::StellarAssetClient,
     Address, Env, String,
 };
 
@@ -113,7 +111,7 @@ fn test_full_cycle() {
     client.join_group(&member1, &group_id);
 
     // Mint tokens to member
-    let token_admin_client = StellarAssetClient::new(&env, &token);
+    let _token_admin_client = StellarAssetClient::new(&env, &token);
     let mint_admin = Address::generate(&env);
     // Re-register to get a token we can mint from
     let token_id = env.register_stellar_asset_contract_v2(mint_admin.clone());
