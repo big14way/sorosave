@@ -6,8 +6,8 @@ use soroban_sdk::{
     Address, Env, String,
 };
 
-use crate::{SoroSaveContract, SoroSaveContractClient};
 use crate::types::GroupStatus;
+use crate::{SoroSaveContract, SoroSaveContractClient};
 
 fn setup_env() -> (Env, Address, SoroSaveContractClient<'static>, Address) {
     let env = Env::default();
@@ -38,9 +38,9 @@ fn create_test_group(
         admin,
         &String::from_str(env, "Test Savings Group"),
         token,
-        &1_000_000,  // 1 token (7 decimals)
-        &86400,       // 1 day cycle
-        &5,           // max 5 members
+        &1_000_000, // 1 token (7 decimals)
+        &86400,     // 1 day cycle
+        &5,         // max 5 members
     )
 }
 

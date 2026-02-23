@@ -113,11 +113,7 @@ pub fn resolve_dispute(env: &Env, admin: Address, group_id: u64) -> Result<(), C
     Ok(())
 }
 
-pub fn emergency_withdraw(
-    env: &Env,
-    admin: Address,
-    group_id: u64,
-) -> Result<(), ContractError> {
+pub fn emergency_withdraw(env: &Env, admin: Address, group_id: u64) -> Result<(), ContractError> {
     admin.require_auth();
 
     let group = storage::get_group(env, group_id).ok_or(ContractError::GroupNotFound)?;
@@ -172,10 +168,8 @@ pub fn set_group_admin(
     group.admin = new_admin.clone();
     storage::set_group(env, &group);
 
-    env.events().publish(
-        (crate::symbol_short!("adm_chng"),),
-        (group_id, new_admin),
-    );
+    env.events()
+        .publish((crate::symbol_short!("adm_chng"),), (group_id, new_admin));
 
     Ok(())
 }

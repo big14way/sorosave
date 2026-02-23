@@ -44,10 +44,7 @@ pub fn distribute_payout(env: &Env, group_id: u64) -> Result<(), ContractError> 
             .publish((crate::symbol_short!("grp_comp"),), group_id);
     } else {
         group.current_round += 1;
-        let next_recipient = group
-            .payout_order
-            .get(group.current_round - 1)
-            .unwrap();
+        let next_recipient = group.payout_order.get(group.current_round - 1).unwrap();
 
         let new_round = RoundInfo {
             round_number: group.current_round,

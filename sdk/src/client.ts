@@ -14,12 +14,12 @@ import {
  * Handles transaction building, simulation, and submission.
  */
 export class SoroSaveClient {
-  private server: StellarSdk.SorobanRpc.Server;
+  private server: StellarSdk.rpc.Server;
   private contractId: string;
   private networkPassphrase: string;
 
   constructor(config: SoroSaveConfig) {
-    this.server = new StellarSdk.SorobanRpc.Server(config.rpcUrl);
+    this.server = new StellarSdk.rpc.Server(config.rpcUrl);
     this.contractId = config.contractId;
     this.networkPassphrase = config.networkPassphrase;
   }
@@ -261,14 +261,14 @@ export class SoroSaveClient {
     const simulated = await this.server.simulateTransaction(tx);
 
     if (
-      StellarSdk.SorobanRpc.Api.isSimulationError(simulated)
+      StellarSdk.rpc.Api.isSimulationError(simulated)
     ) {
       throw new Error(
         `Simulation failed: ${simulated.error}`
       );
     }
 
-    return StellarSdk.SorobanRpc.assembleTransaction(
+    return StellarSdk.rpc.assembleTransaction(
       tx,
       simulated
     ).build();
@@ -291,11 +291,11 @@ export class SoroSaveClient {
 
     const simulated = await this.server.simulateTransaction(tx);
 
-    if (StellarSdk.SorobanRpc.Api.isSimulationError(simulated)) {
+    if (StellarSdk.rpc.Api.isSimulationError(simulated)) {
       throw new Error(`Simulation failed: ${simulated.error}`);
     }
 
-    const successResult = simulated as StellarSdk.SorobanRpc.Api.SimulateTransactionSuccessResponse;
+    const successResult = simulated as StellarSdk.rpc.Api.SimulateTransactionSuccessResponse;
     if (!successResult.result) {
       throw new Error("No result from simulation");
     }
