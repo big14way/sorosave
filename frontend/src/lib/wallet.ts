@@ -20,7 +20,7 @@ export async function connectWallet(): Promise<string | null> {
 
 export async function getPublicKey(): Promise<string | null> {
   try {
-    return await freighter.getAddress();
+    return await freighter.getPublicKey();
   } catch {
     return null;
   }
