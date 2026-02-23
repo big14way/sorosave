@@ -1,0 +1,20 @@
+{
+  "name": "sorosave",
+  "private": true,
+  "scripts": {
+    "build:contracts": "stellar contract build",
+    "build:sdk": "pnpm --filter @sorosave/sdk build",
+    "build:frontend": "pnpm --filter @sorosave/frontend build",
+    "build": "pnpm build:contracts && pnpm build:sdk && pnpm build:frontend",
+    "dev": "pnpm --filter @sorosave/frontend dev",
+    "test:contracts": "cargo test",
+    "test:sdk": "pnpm --filter @sorosave/sdk test",
+    "test": "pnpm test:contracts && pnpm test:sdk",
+    "deploy:testnet": "bash scripts/deploy.sh testnet",
+    "setup": "bash scripts/setup.sh"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
