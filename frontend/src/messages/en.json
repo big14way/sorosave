@@ -1,0 +1,154 @@
+{
+  "Metadata": {
+    "title": "SoroSave - Decentralized Group Savings",
+    "description": "A decentralized rotating savings protocol built on Soroban. Create or join savings groups, contribute each cycle, and receive the pot when it's your turn."
+  },
+  "Navbar": {
+    "groups": "Groups",
+    "createGroup": "Create Group"
+  },
+  "Wallet": {
+    "installFreighter": "Install Freighter",
+    "disconnect": "Disconnect",
+    "connectWallet": "Connect Wallet"
+  },
+  "LocaleSwitcher": {
+    "label": "Language",
+    "locales": {
+      "en": "English",
+      "fr": "French"
+    }
+  },
+  "HomePage": {
+    "hero": {
+      "title": "Decentralized Group Savings for Everyone",
+      "description": "SoroSave brings the traditional rotating savings model (ajo, susu, chit fund) to the Stellar blockchain. Trustless, transparent, and accessible.",
+      "browseGroups": "Browse Groups",
+      "createGroup": "Create a Group"
+    },
+    "how": {
+      "title": "How It Works",
+      "steps": {
+        "create": {
+          "title": "Create a Group",
+          "description": "Set contribution amount, cycle length, and max members. You become the admin."
+        },
+        "join": {
+          "title": "Members Join",
+          "description": "Share the group link. Members join until the group is full or the admin starts it."
+        },
+        "contribute": {
+          "title": "Contribute Each Cycle",
+          "description": "Every member contributes the fixed amount each round. Smart contract enforces rules."
+        },
+        "receive": {
+          "title": "Receive the Pot",
+          "description": "Each round, one member receives the full pot. Continues until everyone has received."
+        }
+      }
+    },
+    "features": {
+      "title": "Why SoroSave?",
+      "items": {
+        "trustless": {
+          "title": "Trustless",
+          "description": "Smart contracts enforce contributions and payouts. No middleman needed."
+        },
+        "transparent": {
+          "title": "Transparent",
+          "description": "All transactions are on-chain. Every member can verify the group state."
+        },
+        "lowCost": {
+          "title": "Low Cost",
+          "description": "Built on Soroban (Stellar). Transaction fees are a fraction of a cent."
+        }
+      }
+    },
+    "footer": {
+      "description": "Open-source decentralized group savings protocol on Soroban.",
+      "docs": "Docs"
+    }
+  },
+  "GroupsPage": {
+    "title": "Savings Groups",
+    "empty": "No groups found. Create the first one!"
+  },
+  "NewGroupPage": {
+    "title": "Create a Savings Group"
+  },
+  "GroupCard": {
+    "contribution": "Contribution",
+    "members": "Members",
+    "round": "Round",
+    "tokens": "tokens",
+    "status": {
+      "forming": "Accepting Members",
+      "active": "Active",
+      "completed": "Completed",
+      "disputed": "Under Dispute",
+      "paused": "Paused"
+    }
+  },
+  "CreateGroupForm": {
+    "walletRequired": "Please connect your wallet to create a group.",
+    "groupName": "Group Name",
+    "groupNamePlaceholder": "My Savings Circle",
+    "tokenContractAddress": "Token Contract Address",
+    "tokenPlaceholder": "CDLZ...",
+    "contributionAmount": "Contribution Amount (per cycle)",
+    "cycleLength": "Cycle Length (seconds)",
+    "maxMembers": "Max Members",
+    "duration": {
+      "hour": "1 Hour",
+      "day": "1 Day",
+      "week": "1 Week",
+      "month": "1 Month"
+    },
+    "success": "Group created successfully!",
+    "error": "Failed to create group",
+    "creating": "Creating...",
+    "submit": "Create Savings Group"
+  },
+  "GroupDetailPage": {
+    "tokensPerCycle": "tokens per cycle",
+    "actions": "Actions",
+    "contribute": "Contribute",
+    "joinGroup": "Join Group",
+    "groupInfo": "Group Info",
+    "status": "Status",
+    "members": "Members",
+    "cycle": "Cycle",
+    "potSize": "Pot Size",
+    "days": "days",
+    "tokens": "tokens",
+    "statusLabels": {
+      "forming": "Accepting Members",
+      "active": "Active",
+      "completed": "Completed",
+      "disputed": "Under Dispute",
+      "paused": "Paused"
+    }
+  },
+  "MemberList": {
+    "title": "Members",
+    "admin": "Admin",
+    "currentRecipient": "Current Recipient",
+    "received": "Received",
+    "round": "Round"
+  },
+  "RoundProgress": {
+    "title": "Progress",
+    "overall": "Overall Progress",
+    "roundOf": "Round {currentRound} of {totalRounds}",
+    "currentContributions": "Current Round Contributions"
+  },
+  "ContributeModal": {
+    "title": "Confirm Contribution",
+    "amount": "Amount to contribute",
+    "tokens": "tokens",
+    "error": "Failed to contribute",
+    "cancel": "Cancel",
+    "confirming": "Confirming...",
+    "contribute": "Contribute"
+  }
+}
