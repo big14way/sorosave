@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useWallet } from "@/app/providers";
 import { sorosaveClient, NETWORK_PASSPHRASE } from "@/lib/sorosave";
@@ -7,6 +8,7 @@ import { parseAmount } from "@sorosave/sdk";
 import { signTransaction } from "@/lib/wallet";
 
 export function CreateGroupForm() {
+  const t = useTranslations("CreateGroupForm");
   const { address, isConnected } = useWallet();
   const [name, setName] = useState("");
   const [tokenAddress, setTokenAddress] = useState("");
@@ -43,9 +45,9 @@ export function CreateGroupForm() {
 
       // TODO: Submit signed transaction to network
       console.log("Signed transaction:", signedXdr);
-      alert("Group created successfully!");
+      alert(t("success"));
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to create group");
+      setError(err instanceof Error ? err.message : t("error"));
     } finally {
       setLoading(false);
     }
@@ -54,7 +56,7 @@ export function CreateGroupForm() {
   if (!isConnected) {
     return (
       <div className="text-center py-12 text-gray-500">
-        Please connect your wallet to create a group.
+        {t("walletRequired")}
       </div>
     );
   }
@@ -63,7 +65,7 @@ export function CreateGroupForm() {
     <form onSubmit={handleSubmit} className="space-y-6 max-w-lg">
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
-          Group Name
+          {t("groupName")}
         </label>
         <input
           type="text"
@@ -71,13 +73,13 @@ export function CreateGroupForm() {
           onChange={(e) => setName(e.target.value)}
           required
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-          placeholder="My Savings Circle"
+          placeholder={t("groupNamePlaceholder")}
         />
       </div>
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
-          Token Contract Address
+          {t("tokenContractAddress")}
         </label>
         <input
           type="text"
@@ -85,13 +87,13 @@ export function CreateGroupForm() {
           onChange={(e) => setTokenAddress(e.target.value)}
           required
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-          placeholder="CDLZ..."
+          placeholder={t("tokenPlaceholder")}
         />
       </div>
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
-          Contribution Amount (per cycle)
+          {t("contributionAmount")}
         </label>
         <input
           type="text"
@@ -106,22 +108,22 @@ export function CreateGroupForm() {
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Cycle Length (seconds)
+            {t("cycleLength")}
           </label>
           <select
             value={cycleLength}
             onChange={(e) => setCycleLength(e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           >
-            <option value="3600">1 Hour</option>
-            <option value="86400">1 Day</option>
-            <option value="604800">1 Week</option>
-            <option value="2592000">1 Month</option>
+            <option value="3600">{t("duration.hour")}</option>
+            <option value="86400">{t("duration.day")}</option>
+            <option value="604800">{t("duration.week")}</option>
+            <option value="2592000">{t("duration.month")}</option>
           </select>
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Max Members
+            {t("maxMembers")}
           </label>
           <input
             type="number"
@@ -145,7 +147,7 @@ export function CreateGroupForm() {
         disabled={loading}
         className="w-full bg-primary-600 text-white py-3 rounded-lg font-medium hover:bg-primary-700 transition-colors disabled:opacity-50"
       >
-        {loading ? "Creating..." : "Create Savings Group"}
+        {loading ? t("creating") : t("submit")}
       </button>
     </form>
   );

@@ -1,10 +1,11 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { MemberList } from "@/components/MemberList";
 import { RoundProgress } from "@/components/RoundProgress";
 import { ContributeModal } from "@/components/ContributeModal";
-import { useState } from "react";
 import { formatAmount, GroupStatus } from "@sorosave/sdk";
 
 // TODO: Fetch real data from contract
@@ -33,8 +34,16 @@ const MOCK_GROUP = {
 };
 
 export default function GroupDetailPage() {
+  const t = useTranslations("GroupDetailPage");
   const [showContributeModal, setShowContributeModal] = useState(false);
   const group = MOCK_GROUP;
+  const statusLabels: Record<string, string> = {
+    Forming: t("statusLabels.forming"),
+    Active: t("statusLabels.active"),
+    Completed: t("statusLabels.completed"),
+    Disputed: t("statusLabels.disputed"),
+    Paused: t("statusLabels.paused"),
+  };
 
   return (
     <>
@@ -43,7 +52,7 @@ export default function GroupDetailPage() {
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-gray-900">{group.name}</h1>
           <p className="text-gray-600 mt-1">
-            {formatAmount(group.contributionAmount)} tokens per cycle
+            {formatAmount(group.contributionAmount)} {t("tokensPerCycle")}
           </p>
         </div>
 
@@ -67,7 +76,7 @@ export default function GroupDetailPage() {
           <div className="space-y-4">
             <div className="bg-white rounded-xl shadow-sm border p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                Actions
+                {t("actions")}
               </h3>
               <div className="space-y-3">
                 {group.status === GroupStatus.Active && (
@@ -75,12 +84,12 @@ export default function GroupDetailPage() {
                     onClick={() => setShowContributeModal(true)}
                     className="w-full bg-primary-600 text-white py-3 rounded-lg font-medium hover:bg-primary-700 transition-colors"
                   >
-                    Contribute
+                    {t("contribute")}
                   </button>
                 )}
                 {group.status === GroupStatus.Forming && (
                   <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-                    Join Group
+                    {t("joinGroup")}
                   </button>
                 )}
               </div>
@@ -88,32 +97,34 @@ export default function GroupDetailPage() {
 
             <div className="bg-white rounded-xl shadow-sm border p-6">
               <h3 className="text-sm font-semibold text-gray-900 mb-3">
-                Group Info
+                {t("groupInfo")}
               </h3>
               <dl className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <dt className="text-gray-500">Status</dt>
-                  <dd className="font-medium text-gray-900">{group.status}</dd>
+                  <dt className="text-gray-500">{t("status")}</dt>
+                  <dd className="font-medium text-gray-900">
+                    {statusLabels[String(group.status)] || String(group.status)}
+                  </dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-gray-500">Members</dt>
+                  <dt className="text-gray-500">{t("members")}</dt>
                   <dd className="font-medium text-gray-900">
                     {group.members.length}/{group.maxMembers}
                   </dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-gray-500">Cycle</dt>
+                  <dt className="text-gray-500">{t("cycle")}</dt>
                   <dd className="font-medium text-gray-900">
-                    {group.cycleLength / 86400} days
+                    {group.cycleLength / 86400} {t("days")}
                   </dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-gray-500">Pot Size</dt>
+                  <dt className="text-gray-500">{t("potSize")}</dt>
                   <dd className="font-medium text-gray-900">
                     {formatAmount(
                       group.contributionAmount * BigInt(group.members.length)
                     )}{" "}
-                    tokens
+                    {t("tokens")}
                   </dd>
                 </div>
               </dl>
